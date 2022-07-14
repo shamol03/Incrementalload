@@ -1,0 +1,1204 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/14/2022 8:54:44 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-85ELA62"
+  DTS:CreatorName="DESKTOP-85ELA62\Rowson"
+  DTS:DTSID="{16AB74BF-3D74-486F-A3ED-E0A0AA2103B0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.521.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{6596C8BD-547C-4BB1-8314-E9D56613028D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D8CDB210-028B-4243-95C8-2517D2E381B9}"
+      DTS:ObjectName="DESKTOP-85ELA62.HR">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-85ELA62;Initial Catalog=HR;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETL Delta data load"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{970708F9-FE0F-4942-B1D7-716A153654D8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL Delta data load"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL Delta data load\Destination for first Load"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination for first Load"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Target]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL Delta data load\Destination for first Load.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].Columns[Emp_id]"
+                      cachedDataType="i4"
+                      cachedName="Emp_id"
+                      externalMetadataColumnId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].ExternalColumns[Emp_id]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]" />
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].Columns[Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].Columns[Salary]"
+                      cachedDataType="cy"
+                      cachedName="Salary"
+                      externalMetadataColumnId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].ExternalColumns[Salary]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Salary]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].ExternalColumns[Emp_id]"
+                      dataType="i4"
+                      name="Emp_id" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input].ExternalColumns[Salary]"
+                      dataType="cy"
+                      name="Salary" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL Delta data load\Destination for first Load.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Destination for first Load.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Destination for first Load.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Destination for first Load.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL Delta data load\Look up for unmatched data for all colomns"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Look up for unmatched data for all colomns"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Target]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Target]) [refTable]
+where [refTable].[Emp_id] = ? and [refTable].[Name] = ? and [refTable].[Salary] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Emp_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Salary" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]};#{Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Name]};#{Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Salary]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input].Columns[Emp_id]"
+                      cachedDataType="i4"
+                      cachedName="Emp_id"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Emp_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input].Columns[Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Name"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Name]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Name</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input].Columns[Salary]"
+                      cachedDataType="cy"
+                      cachedName="Salary"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Salary]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Salary</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL Delta data load\Look up for unmatched data for first load"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Look up for unmatched data for first load"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Target]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Target]) [refTable]
+where [refTable].[Emp_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Emp_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Salary" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL Delta data load\Look up for unmatched data for first load.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL Delta data load\Look up for unmatched data for first load.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for first load.Inputs[Lookup Input].Columns[Emp_id]"
+                      cachedDataType="i4"
+                      cachedName="Emp_id"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Emp_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\ETL Delta data load\Look up for unmatched data for first load.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\ETL Delta data load\Look up for unmatched data for first load.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\ETL Delta data load\Look up for unmatched data for first load.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL Delta data load\Source data for first and delta load"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source data for first and delta load"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Source]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL Delta data load\Source data for first and delta load.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].ExternalColumns[Emp_id]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]"
+                      name="Emp_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="30"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Salary]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].ExternalColumns[Salary]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Salary]"
+                      name="Salary"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].ExternalColumns[Emp_id]"
+                      dataType="i4"
+                      name="Emp_id" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].ExternalColumns[Salary]"
+                      dataType="cy"
+                      name="Salary" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[Emp_id]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[Emp_id]"
+                      name="Emp_id" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[Salary]"
+                      dataType="cy"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[Salary]"
+                      name="Salary" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL Delta data load\Updata data insert into stage table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Updata data insert into stage table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Source_stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL Delta data load\Updata data insert into stage table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-85ELA62.HR]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].Columns[Emp_id]"
+                      cachedDataType="i4"
+                      cachedName="Emp_id"
+                      externalMetadataColumnId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].ExternalColumns[Emp_id]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Emp_id]" />
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].Columns[Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].Columns[Salary]"
+                      cachedDataType="cy"
+                      cachedName="Salary"
+                      externalMetadataColumnId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].ExternalColumns[Salary]"
+                      lineageId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output].Columns[Salary]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].ExternalColumns[Emp_id]"
+                      dataType="i4"
+                      name="Emp_id" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input].ExternalColumns[Salary]"
+                      dataType="cy"
+                      name="Salary" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL Delta data load\Updata data insert into stage table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Updata data insert into stage table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL Delta data load\Updata data insert into stage table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL Delta data load\Updata data insert into stage table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL Delta data load.Paths[Lookup Match Output]"
+              endId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\ETL Delta data load.Paths[Lookup No Match Output]"
+              endId="Package\ETL Delta data load\Destination for first Load.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\ETL Delta data load\Look up for unmatched data for first load.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\ETL Delta data load.Paths[Lookup No Match Output1]"
+              endId="Package\ETL Delta data load\Updata data insert into stage table.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\ETL Delta data load\Look up for unmatched data for all colomns.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\ETL Delta data load.Paths[OLE DB Source Output]"
+              endId="Package\ETL Delta data load\Look up for unmatched data for first load.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\ETL Delta data load\Source data for first and delta load.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update data on target table from stage table and also truncate the stage table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5193F83C-B084-4AFC-84A7-944243710A50}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update data on target table from stage table and also truncate the stage table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D8CDB210-028B-4243-95C8-2517D2E381B9}"
+          SQLTask:SqlStatementSource="UPDATE a&#xA;SET a.Name=b.Name,a.Salary=b.Salary&#xA;FROM Target a JOIN source_stage b ON a.Emp_id=b.Emp_id&#xA;go&#xA;&#xA;&#xA;TRUNCATE TABLE Source_stage&#xA;go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{18AD7859-8530-4730-A9D1-247E5D5B9D3C}"
+      DTS:From="Package\ETL Delta data load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update data on target table from stage table and also truncate the stage table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\ETL Delta data load"
+          TopLeft="24,102" />
+        <NodeLayout
+          Size="455,42"
+          Id="Package\Update data on target table from stage table and also truncate the stage table"
+          TopLeft="227,201" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="112,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="342.5,57"
+              Start="0,0"
+              End="342.5,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="338.5,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="338.5,28.5"
+                    Point2="342.5,28.5"
+                    Point3="342.5,32.5" />
+                  <mssgle:LineSegment
+                    End="342.5,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="1. First load of all data that was not matched .&#xD;&#xA;2. Delta data has been upload into the taget table by using stage table."
+          ParentId="Package"
+          Size="493,62"
+          Id="0a863d24-3b17-4e61-b3fe-08896aca854f"
+          TopLeft="113,18">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Calibri"
+              Size="15.75"
+              Color="#FF008000"
+              Style="Italic"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL Delta data load">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="247,42"
+          Id="Package\ETL Delta data load\Source data for first and delta load"
+          TopLeft="106,3" />
+        <NodeLayout
+          Size="276,42"
+          Id="Package\ETL Delta data load\Look up for unmatched data for first load"
+          TopLeft="264,62" />
+        <NodeLayout
+          Size="289,42"
+          Id="Package\ETL Delta data load\Look up for unmatched data for all colomns"
+          TopLeft="53,137" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\ETL Delta data load\Updata data insert into stage table"
+          TopLeft="316,241" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\ETL Delta data load\Destination for first Load"
+          TopLeft="387,155" />
+        <EdgeLayout
+          Id="Package\ETL Delta data load.Paths[Lookup No Match Output1]"
+          TopLeft="197.5,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="241.5,62"
+              Start="0,0"
+              End="241.5,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="4,31" />
+                  <mssgle:LineSegment
+                    End="237.5,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="237.5,31"
+                    Point2="241.5,31"
+                    Point3="241.5,35" />
+                  <mssgle:LineSegment
+                    End="241.5,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="64.94361328125,36,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL Delta data load.Paths[Lookup No Match Output]"
+          TopLeft="402,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="84,51"
+              Start="0,0"
+              End="84,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="4,25.5" />
+                  <mssgle:LineSegment
+                    End="80,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="80,25.5"
+                    Point2="84,25.5"
+                    Point3="84,29.5" />
+                  <mssgle:LineSegment
+                    End="84,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-13.80638671875,30.5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL Delta data load.Paths[Lookup Match Output]"
+          TopLeft="357.333333333333,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-159.833333333333,33"
+              Start="0,0"
+              End="-159.833333333333,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.31412103746398" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.31412103746398"
+                    Point2="0,13.314121037464"
+                    Point3="-4,13.314121037464" />
+                  <mssgle:LineSegment
+                    End="-155.833333333333,13.314121037464" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-155.833333333333,13.314121037464"
+                    Point2="-159.833333333333,13.314121037464"
+                    Point3="-159.833333333333,17.314121037464" />
+                  <mssgle:LineSegment
+                    End="-159.833333333333,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-128.108053385416,18.314121037464,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL Delta data load.Paths[OLE DB Source Output]"
+          TopLeft="353,24">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="49,38"
+              Start="0,0"
+              End="49,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="45,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45,0"
+                    Point2="49,0"
+                    Point3="49,4" />
+                  <mssgle:LineSegment
+                    End="49,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Insert Data for First Load"
+          ParentId="Package\ETL Delta data load"
+          Size="213,43"
+          Id="be8b4bed-f9e9-45c1-a157-be2adb49769d"
+          TopLeft="521,98">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Calibri"
+              Size="15.75"
+              Color="#FF000000"
+              Style="Italic"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Update data insert into the stage Table"
+          ParentId="Package\ETL Delta data load"
+          Size="293,60"
+          Id="39845425-73cb-4c75-8946-37aa1d2865b0"
+          TopLeft="2,236">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Calibri"
+              Size="15.75"
+              Color="#FF000000"
+              Style="Italic"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Delta data load\Look up for unmatched data for first load">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Target]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Delta data load\Updata data insert into stage table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Delta data load\Look up for unmatched data for all colomns">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Target]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Delta data load\Destination for first Load">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL Delta data load\Source data for first and delta load">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
